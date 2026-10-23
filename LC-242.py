@@ -13,10 +13,7 @@ def isAnagram(s: str, t: str) -> bool:
             count = b[j]
             count += 1
         b[j] = count
-    if a == b:
-        return True
-    else:
-        return False
+    return a == b
 
 
 # --- TEST CASES FOR VS CODE ---
