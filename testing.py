@@ -1,12 +1,11 @@
+h = "hey"
+
+
 def fact(a):
-    if a < 0:
-        raise ValueError("Invalid number")
-    if a <= 1:
-        return 1
-    b = fact(a - 1) * a
-    return b
+    n = 1
+    for i in range(a):
+        n = (i + 1) * n
+    return n
 
 
-m = int(input("enter:"))
-l = fact(m)
-print(l)
+print(h, fact(5))
