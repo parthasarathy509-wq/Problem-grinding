@@ -3,7 +3,10 @@ def fact(a):
         raise ValueError("Invalid number")
     if a <= 1:
         return 1
-    return fact(a - 1) * a
+    b = fact(a - 1) * a
+    return b
 
 
-print(fact(2))
+m = int(input("enter:"))
+l = fact(m)
+print(l)
