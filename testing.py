@@ -1,11 +1,24 @@
-h = "hey"
+def encode(s):
+    a = []
+    for i in s:
+        a.append(str(len(i)) + "#" + i)
+    return "".join(a)
 
 
-def fact(a):
-    n = 1
-    for i in range(a):
-        n = (i + 1) * n
-    return n
+s = encode(["hello", "worldi"])
 
 
-print(h, fact(5))
+def decode(s):
+    res = []
+    i = 0
+    while i < len(s):
+        j = s.index("#", i)
+        length = int(s[i:j])
+        start = j + 1
+        end = start + length
+        res.append(s[start:end])
+        i = end
+    return res
+
+
+print(decode(s))
