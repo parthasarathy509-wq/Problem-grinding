@@ -1,24 +1,19 @@
-def encode(s):
-    a = []
-    for i in s:
-        a.append(str(len(i)) + "#" + i)
-    return "".join(a)
+while True:
+    a = int(input("enter or enter -1 to end:"))
+    if a == -1:
+        break
+    b = int(input("enter end:"))
+    if a <= 1:
+        a = 2
+    while a <= b:
+        is_prime = True
 
-
-s = encode(["hello", "worldi"])
-
-
-def decode(s):
-    res = []
-    i = 0
-    while i < len(s):
-        j = s.index("#", i)
-        length = int(s[i:j])
-        start = j + 1
-        end = start + length
-        res.append(s[start:end])
-        i = end
-    return res
-
-
-print(decode(s))
+        i = 2
+        while i < int(a**0.5) + 1:
+            if a % i == 0:
+                is_prime = False
+                break
+            i += 1
+        if is_prime:
+            print(a)
+        a += 1
