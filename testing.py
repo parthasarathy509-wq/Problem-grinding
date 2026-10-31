@@ -17,3 +17,4 @@ while True:
         if is_prime:
             print(a)
         a += 1
+# fucking loser
