@@ -1,10 +1,7 @@
-a = 0
-b = 1
-n = 11
-count = 0
-while count < n:
-    print(a, end=" ")
-    temp = a
-    a = b
-    b = temp + b
-    count += 1
+a = 8
+is_prime = True
+for i in range(2, int(a**0.5) + 1):
+    if a % i == 0:
+        is_prime = False
+        break
+print(is_prime)
