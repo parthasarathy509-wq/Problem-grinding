@@ -1,20 +1,24 @@
-def longestConsecutive(nums):
-    num = sorted(nums)
-    s = set(num)
-    k = list(s)
-    l = 0
-    r = 1
-    count = 1
-    max_count = 1
-    while r < len(k):
-        if k[l] == (k[r] - 1):
+def topKFrequent(nums, k):
+    a = {}
+    b = []
+    res = []
+    fin = []
+    for i in range(len(nums)):
+        count = 1
+        if nums[i] in a:
+            count = a[nums[i]]
             count += 1
-            max_count = max(max_count, count)
-        else:
-            count = 1
-        l += 1
-        r += 1
-    return max_count
+        a[nums[i]] = count
+    for i, j in a.items():
+        b.append(j)
+    b.sort(reverse=True)
+    for i in range(k):
+        res.append(b[i])
+    for i in res:
+        for key, value in a.items():
+            if i == value:
+                fin.append(key)
+    return fin
 
 
-print(longestConsecutive([0, 3, 2, 5, 4, 6, 1, 1]))
+print(topKFrequent([7, 7], 1))
