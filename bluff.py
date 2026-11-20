@@ -18,6 +18,8 @@ def topKFrequent(nums, k):
         for key, value in a.items():
             if i == value:
                 fin.append(key)
+                a[key] = -1
+                break
     return fin
 
 
