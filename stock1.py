@@ -1,14 +1,16 @@
 def maxProfit(prices: list[int]) -> int:
-    left = 0  # Buy day
+    left = 0  # Buy pointer
+    right = 1  # Sell pointer
     max_profit = 0
 
-    for right in range(1, len(prices)):  # Sell day
-        if prices[right] > prices[left]:
+    while right < len(prices):
+        if prices[left] < prices[right]:
             profit = prices[right] - prices[left]
             max_profit = max(max_profit, profit)
         else:
-            # Found a lower price; shift buy pointer here
+            # Found a cheaper day to buy; move buy pointer here
             left = right
+        right += 1
 
     return max_profit
 
