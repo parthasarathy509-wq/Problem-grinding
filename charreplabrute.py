@@ -1,31 +1,32 @@
-def characterReplacementBruteForce(s: str, k: int) -> int:
+def characterReplacementPureLogic(s: str, k: int) -> int:
     max_length = 0
-    n = len(s)
+    unique_letters = set(s)  # Just like your original idea!
 
-    # Outer loop: pick the starting index of the substring
-    for i in range(n):
-        count = {}  # Fresh frequency map for each new starting index
-        max_freq = 0
+    # Try making a streak out of each unique letter one by one
+    for target in unique_letters:
+        # Try starting our streak from every possible index in the string
+        for start in range(len(s)):
+            changes_used = 0
+            current_streak = 0
 
-        # Inner loop: expand the ending index one character at a time
-        for j in range(i, n):
-            char = s[j]
-            count[char] = count.get(char, 0) + 1
+            # Walk forward from 'start' and literally simulate replacing characters
+            for i in range(start, len(s)):
+                if s[i] == target:
+                    # Already matches! Keep going
+                    current_streak += 1
+                elif changes_used < k:
+                    # Doesn't match, so spend 1 change to turn it into 'target'
+                    changes_used += 1
+                    current_streak += 1
+                else:
+                    # Out of changes and hit a different letter—streak breaks!
+                    break
 
-            # Find the most frequent character in the current substring s[i...j]
-            max_freq = max(max_freq, count[char])
-
-            # Calculate current substring length and required replacements
-            substring_len = j - i + 1
-            replacements_needed = substring_len - max_freq
-
-            # If valid, update our longest found length
-            if replacements_needed <= k:
-                max_length = max(max_length, substring_len)
+            max_length = max(max_length, current_streak)
 
     return max_length
 
 
-# --- Quick Test ---
-print(characterReplacementBruteForce("AABABBA", 1))  # Output: 4
-print(characterReplacementBruteForce("ABAB", 2))  # Output: 4
+# --- Test ---
+print(characterReplacementPureLogic("AABABBA", 1))  # Output: 4
+print(characterReplacementPureLogic("ABAB", 2))  # Output: 4
